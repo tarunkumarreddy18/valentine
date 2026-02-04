@@ -5,7 +5,6 @@
   <title>Happy Valentine’s Day ❤️</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
@@ -18,117 +17,111 @@
       overflow-x: hidden;
     }
 
-    section {
-      padding: 60px 20px;
-    }
+    section { padding: 60px 20px; }
+    h1 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: #c9184a; }
+    h2 { color: #c9184a; margin-bottom: 20px; }
+    p { max-width: 700px; margin: auto; line-height: 1.7; font-size: 1.05rem; }
 
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      color: #c9184a;
-    }
+    .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
 
-    h2 {
-      color: #c9184a;
-      margin-bottom: 20px;
-    }
+    .photos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; max-width: 900px; margin: auto; }
+    .photos img { width: 100%; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
 
-    p {
-      max-width: 700px;
-      margin: auto;
-      line-height: 1.7;
-      font-size: 1.05rem;
-    }
+    .letter { background: rgba(255,255,255,0.7); padding: 40px; border-radius: 20px; max-width: 800px; margin: auto; }
 
-    .hero {
-      height: 100vh;
+    .timeline { max-width: 600px; margin: auto; text-align: left; }
+    .timeline div { margin-bottom: 15px; }
+    .timeline strong { color: #c9184a; }
+
+    .button { background: #c9184a; color: white; padding: 15px 30px; border-radius: 30px; font-size: 1.1rem; cursor: pointer; border: none; }
+
+    #finalMessage { display: none; font-size: 1.8rem; font-family: 'Great Vibes', cursive; color: #c9184a; margin-top: 30px; }
+
+    /* Password screen */
+    #lockScreen {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      z-index: 9999;
     }
-
-    .hero span {
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
-
-    .photos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .photos img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-
-    .letter {
-      background: rgba(255,255,255,0.7);
+    .lockBox {
+      background: white;
       padding: 40px;
       border-radius: 20px;
-      max-width: 800px;
-      margin: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      max-width: 350px;
+      width: 90%;
     }
-
-    .timeline {
-      max-width: 600px;
-      margin: auto;
-      text-align: left;
+    .lockBox input {
+      padding: 12px;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      margin: 10px 0;
+      font-size: 1rem;
+      text-align: center;
     }
+    .error { color: #c9184a; font-size: 0.9rem; display: none; }
 
-    .timeline div {
-      margin-bottom: 15px;
-    }
-
-    .timeline strong {
-      color: #c9184a;
-    }
-
-    .button {
-      background: #c9184a;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 30px;
-      font-size: 1.1rem;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.2s;
-    }
-
-    .button:hover {
-      transform: scale(1.05);
-    }
-
-    #finalMessage {
-      display: none;
-      font-size: 1.8rem;
-      font-family: 'Great Vibes', cursive;
-      color: #c9184a;
-      margin-top: 30px;
-    }
-
-    /* Floating hearts */
     .heart {
       position: fixed;
       bottom: -20px;
-      color: rgba(255, 0, 100, 0.6);
       font-size: 20px;
       animation: floatUp 6s linear infinite;
+      color: rgba(255, 0, 100, 0.6);
     }
-
     @keyframes floatUp {
       from { transform: translateY(0); opacity: 1; }
       to { transform: translateY(-110vh); opacity: 0; }
     }
+	/* Cute hint animation */
+.hint {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  margin-top: 8px;
+  display: inline-block;
+  animation: wiggle 4s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+  0% { transform: rotate(0deg); }
+  5% { transform: rotate(-2deg); }
+  10% { transform: rotate(2deg); }
+  15% { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.pop-heart {
+  position: absolute;
+  font-size: 18px;
+  animation: pop 1s ease-out forwards;
+}
+
+@keyframes pop {
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  50% { transform: translateY(-10px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-25px) scale(1); opacity: 0; }
+}
+
   </style>
 </head>
 
 <body>
+
+  <!-- PASSWORD LOCK -->
+  <div id="lockScreen">
+    <div class="lockBox">
+      <h2>🔐 Private Surprise</h2>
+      <p>Enter the secret password</p>
+      <input type="password" id="passwordInput" placeholder="Password">
+      <button class="button" onclick="checkPassword()">Unlock ❤️</button>
+      <div class="error" id="errorMsg">Wrong password. Try again 😅</div>
+      <<p class="hint" id="hintText">Hint: Our special date 💫</p>
+    </div>
+  </div>
 
   <!-- Background Music -->
   <audio autoplay loop>
@@ -137,9 +130,9 @@
 
   <!-- HERO -->
   <section class="hero">
-    <h1>Happy Valentine’s Day ❤️</h1>
-    <span>My love, [Sailu]</span>
-    <p>This little website exists because of you.</p>
+    <h1>Happy Valentine’s Day Dear❤️</h1>
+    <span>My love, [Her Name]</span>
+    <p>This little human being TK exists because of you.</p>
   </section>
 
   <!-- PHOTOS -->
@@ -185,21 +178,34 @@
   </section>
 
   <script>
-    function showLove() {
-      document.getElementById("finalMessage").style.display = "block";
-    }
+    <script>
+  const CORRECT_PASSWORD = "MYLOVE123"; // change this
 
-    // floating hearts
-    setInterval(() => {
+  function checkPassword() {
+    const input = document.getElementById("passwordInput").value;
+    const error = document.getElementById("errorMsg");
+
+    if (input === CORRECT_PASSWORD) {
+      document.getElementById("lockScreen").style.display = "none";
+    } else {
+      error.style.display = "block";
+
+      // Cute heart pop near hint
+      const hint = document.getElementById("hintText");
       const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerHTML = "❤️";
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = (15 + Math.random() * 20) + "px";
-      document.body.appendChild(heart);
+      heart.className = "pop-heart";
+      heart.innerHTML = "💖";
 
-      setTimeout(() => heart.remove(), 6000);
-    }, 400);
+      const rect = hint.getBoundingClientRect();
+      heart.style.left = rect.left + rect.width / 2 + "px";
+      heart.style.top = rect.top - 10 + "px";
+
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 1000);
+    }
+  }
+</script>
+
   </script>
 
 </body>
